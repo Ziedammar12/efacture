@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>efacture</title>
+    <link rel="stylesheet" href="login.component.css">
+</head>
+
+<body>
+    
+<header>
+    <img class="image_login" src="https://lh3.googleusercontent.com/p/AF1QipP-xGgVIOL8Q-8xwDihf-ad7PUAiLKExTrGNw8=s1360-w1360-h1020" alt="image" height="300px" >
+</header>
+<div class="form_container">
+    <div>
+        <div>Login : {{ form.login }}</div>
+        <div>Password : {{ form.password }}</div>
+    </div>
+    <br>
+    <form class="form"
+         name="form" 
+         #f="ngForm"
+         (ngSubmit)="f.form.valid && onsubmit()"
+    
+    >
+
+        <div class="group">
+            <label for="login">Login: </label>
+            <input type="email" name="login" id="login" [(ngModel)]="form.login" #login="ngModel" required >
+            <div class="form_error" *ngIf="login.errors && f.submitted">
+                 <div *ngIf="login.errors['required']">Login incorrect</div>
+            </div>
+                
+        </div>
+        <div class="group">
+            <label for="password">Password: </label>
+            <input type="password" name="password" id="password" [(ngModel)]="form.password" #password="ngModel" required minlength="5">
+            <div class="form_error" *ngIf="password.errors && f.submitted">
+                <div *ngIf="password.errors['required']">Password is required</div>  
+                <div *ngIf="password.errors['minlength']">Password must be at least 5 charracters </div>         
+            </div>
+        </div>
+        <div class="group">
+            <button >
+                Login
+              </button>
+        </div>
+    </form>
+      
+</div>
+</body>
+
+</html>
+
