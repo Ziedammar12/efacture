@@ -19,18 +19,21 @@
         <div>Password : {{ form.password }}</div>
     </div>
     <br>
-    <form class="form"
+    
+     
+    
+   <form class="form"
          name="form" 
          #f="ngForm"
-         (ngSubmit)="f.form.valid && onsubmit()"
+         (ngSubmit)="f.form.valid && onsubmit()">
     
-    >
+
 
         <div class="group">
             <label for="login">Login: </label>
             <input type="email" name="login" id="login" [(ngModel)]="form.login" #login="ngModel" required >
             <div class="form_error" *ngIf="login.errors && f.submitted">
-                 <div *ngIf="login.errors['required']">Login incorrect</div>
+                <div *ngIf="login.errors['required']">Login incorrect</div>
             </div>
                 
         </div>
@@ -40,10 +43,15 @@
             <div class="form_error" *ngIf="password.errors && f.submitted">
                 <div *ngIf="password.errors['required']">Password is required</div>  
                 <div *ngIf="password.errors['minlength']">Password must be at least 5 charracters </div>         
-            </div>
+             </div>
         </div>
+    
         <div class="group">
-            <input type="submit" value="Login" onclick="home"> 
+            
+            <input type="submit" value="Login" [(ngModel)]="form.login" #login="ngModel" >
+            
+            <div *ngif="login.errors && password.errors && f.submited"></div> 
+                
         </div>
     </form>
       
